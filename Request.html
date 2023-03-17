@@ -1,0 +1,1135 @@
+
+    <section class="content-wrapper main-content clear-fix">
+        <div class="k-content">
+            <div id="RequestContents">
+                <br />
+
+                <div class="container-fluid ">
+                    <div class="row">
+                        <div class="col-xs-9">
+                            <p class="title"><b><span class="fa fa-file"></span>&nbsp;<label data-bind="text: lblLoS"></label></b></p>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <h4><label id="intDocumentType_intDocumentTypeDataModel_vcName" data-bind="text: currentRecord.intDocumentType_intDocumentTypeDataModel_vcName"></label></h4>
+                                </div>
+                                <div class="col-xs-12 col-md-6" style="text-align: right">
+                                    <h4>PwC ID:&nbsp;<label id="lblPwCID" data-bind="text: currentRecord.vcGeneratedCode"></label>&nbsp;-&nbsp;Entry Date:&nbsp;<label id="lblEntryDate" data-bind="text: lblEntryDate"></label></h4>
+                                </div>
+                            </div>
+                            <form role="form" id="formRequest">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="intFirmID" class="control-label">Company&nbsp;</label>
+                                            <input id="intFirmID"
+                                                   name="intFirmID"
+                                                   data-auto-bind="false"
+                                                   data-role="hydropdownlist"
+                                                   data-hy-entity-name="Firm"
+                                                   data-hydefault-text-property="currentRecord.intFirm_vcName"
+                                                   data-hydefault-value-property="currentRecord.intFirmID"
+                                                   data-bind="source: dsFirm, value: currentRecord.intFirmID, events: { close: evtCloseComboFirm }"
+                                                   data-option-label="Select Company..."
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group" id="divDocumentType">
+                                            <label for="intDocumentTypeID" class="control-label">Document Sub Type&nbsp;</label>
+                                            <input id="intDocumentTypeID"
+                                                   name="intDocumentTypeID"
+                                                   data-auto-bind="false"
+                                                   data-role="hydropdownlist"
+                                                   data-hy-entity-name="DocumentType"
+                                                   data-hydefault-text-property="currentRecord.intDocumentType_vcName"
+                                                   data-bind="source: dsDocumentType,value: currentRecord.intDocumentTypeID, events: { change: evtDocumentTypeOnCascade}"
+                                                   data-option-label="Select Sub type..."
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="vcFirmSPA" class="control-label">Company Code</label>
+                                            <input id="vcFirmSPA" name="vcFirmSPA" type="text" readonly data-bind="value: currentRecord.intFirm_vcSAPCode" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group" id="divThirdParty">
+                                            <label for="intThirdPartyID" class="control-label">Third Party&nbsp;</label>
+                                            <input id="intThirdPartyID"
+                                                   name="intThirdPartyID"
+                                                   data-auto-bind="false"
+                                                   data-role="hydropdownlist"
+                                                   data-hy-entity-name="ThirdParty"
+                                                   data-text-field="vcNameAndVATNumber"
+                                                   data-hydefault-text-property="currentRecord.intThirdParty_vcNameAndVATNumber"
+                                                   data-hydefault-value-property="currentRecord.intThirdPartyID"
+                                                   data-value-field="ID"
+                                                   data-bind="source:dsThirdParty, value: currentRecord.intThirdPartyID, events: { close: evCloseComboThirdParty }"
+                                                   data-option-label="Select third party..."
+                                                   class="form-control" />
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="vcCountryNameAndISO" class="control-label">Country&nbsp;</label>
+                                            <input id="vcCountryNameAndISO" type="text" readonly data-bind="value: vcCountryNameAndISO" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="intThirdParty_vcCode" class="control-label">Third Party Code</label>
+                                            <input id="intThirdParty_vcCode" name="intThirdParty_vcCode" type="text" readonly data-bind="value: currentRecord.intThirdParty_vcCode" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row customBorderRadius" style="background:rgba(230, 230, 230);margin:10px;padding:10px">
+                                    <div id="PurchaseOrderSubTypeField">
+                                        <div class="row">
+                                            <div id="PurchaseOrderApprovalAreaField" class="col-xs-12 col-md-6">
+                                                <div class="form-group">
+                                                    <label for="intPurchaseOrderApprovalAreaID" class="control-label">Approval area</label>
+                                                    <input id="intPurchaseOrderApprovalAreaID"
+                                                        name="intPurchaseOrderApprovalAreaID"
+                                                        data-role="hydropdownlist"
+                                                        data-hy-entity-name="PurchaseOrderApprovalArea"
+                                                        data-value-field="ID"
+                                                        data-bind="value: currentRecord.intPurchaseOrderApprovalAreaID"
+                                                        data-option-label="Select an Approval area..."
+                                                        class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-6">
+                                                <div class="form-group ceco-manage-field">
+                                                    <label for="intCecoID" class="control-label">CECO&nbsp;
+                                                        <span id="ceco-alert"></span>
+                                                    </label>
+                                                    <input id="intCecoID"
+                                                       name="intCecoID"
+                                                       data-role="hydropdownlist"
+                                                       data-option-label="Select CECO..."
+                                                       data-value-field="ID"
+                                                       data-bind="source: dsCeco, value: currentRecord.intCecoID"
+                                                       class="form-control" />
+                                                </div>
+                                                <div class="form-group ceco-view-field">
+                                                    <label for="intCecoID_VIEW" class="control-label">CECO&nbsp;
+                                                        <span id="ceco-alert"></span>
+                                                    </label>
+                                                    <input id="intCecoID_VIEW"
+                                                            type="text"
+                                                            readonly
+                                                            data-bind="value: currentRecord.intCeco_vcName"
+                                                            class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-md-6">
+                                                <div class="form-group purchasingType-manage-field">
+                                                    <label for="intPurchasingTypeID" class="control-label">Purchasing type&nbsp;
+                                                        <span id="purchasing-alert"></span>
+                                                    </label>
+                                                    <input id="intPurchasingTypeID"
+                                                       name="intPurchasingTypeID"
+                                                       data-auto-bind="false"
+                                                       data-role="hydropdownlist"
+                                                       data-hy-entity-name="PurchasingType"
+                                                       data-hydefault-text-property="currentRecord.intPurchasingType_vcName"
+                                                       data-bind="source: dsPurchasingType , value: currentRecord.intPurchasingTypeID"
+                                                       data-option-label="Select purchasing type..."
+                                                       data-value-field="intPurchasingTypeID"
+                                                       data-text-field="intPurchasingType_vcName"
+                                                       class="form-control" />
+                                                </div>
+
+                                                <div class="form-group purchasingType-view-field">
+                                                    <label for="intPurchasingTypeID_VIEW" class="control-label">Purchasing type&nbsp;
+                                                    </label>
+                                                    <input id="intPurchasingTypeID_VIEW"
+                                                            type="text"
+                                                            readonly
+                                                            data-bind="value: purchasingTypeLegacyName"
+                                                            class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-md-6">
+                                                <div class="form-group poType-manage-field">
+                                                    <label for="intPurchaseOrderTypeID" class="control-label">P.O type&nbsp;
+                                                        <span id="POType-alert"></span>
+                                                    </label>
+                                                    <input id="intPurchaseOrderTypeID"
+                                                       data-auto-bind="false"
+                                                       name="intPurchaseOrderTypeID"
+                                                       data-role="hydropdownlist"
+                                                       data-hy-entity-name="PurchaseOrderTypePurchasingType"
+                                                       data-hydefault-text-property="currentRecord.intPurchaseOrderType_vcName"
+                                                       data-bind="source: dsPurchaseOrderType, value: currentRecord.intPurchaseOrderTypeID"
+                                                       data-option-label="Select purchase order type..."
+                                                       data-text-field="intPurchaseOrderType_vcName"
+                                                       data-value-field="intPurchaseOrderTypeID"
+                                                       class="form-control" />
+                                                </div>
+
+                                                <div class="form-group poType-view-field">
+                                                    <label for="intPurchaseOrderTypeID_VIEW" class="control-label">P.O type&nbsp;
+                                                    </label>
+                                                    <input id="intPurchaseOrderTypeID_VIEW"
+                                                            type="text"
+                                                            readonly
+                                                            data-bind="value: poTypeLegacyName"
+                                                            class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                    <div id="ServiceTypeField" class="col-xs-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="intServiceTypeID" class="control-label">Concept
+                                                <span id="concept-alert"></span>
+                                            </label>
+                                            <input id="intServiceTypeID"
+                                                   name="intServiceTypeID"
+                                                   data-role="hydropdownlist"
+                                                   data-hy-entity-name="ServiceType"
+                                                   data-option-label="Select Concept..."
+                                                   data-value-field="ID"
+                                                   data-bind="value: currentRecord.intServiceTypeID"
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div id="ThirdPartyCategoryField" class="col-xs-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="intThirdPartyCategoryID" class="control-label">SAP Vendor Category
+                                                <span id="SAPCat-alert"></span>
+                                            </label>
+                                            <input id="intThirdPartyCategoryID"
+                                                   name="intThirdParty_intThirdPartyCategoryID"
+                                                   disabled
+                                                   data-role="hydropdownlist"
+                                                   data-hy-entity-name="ThirdPartyCategory"
+                                                   data-value-field="ID"
+                                                   data-bind="value: currentRecord.intThirdPartyCategoryID"
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-10">
+                                        <label for="vcMigrationURL" class="control-label">URL Katalyst: </label>
+                                        <input id="vcMigrationURL" name="vcMigrationURL" type="text" data-bind="value: currentRecord.vcMigrationURL" class="form-control" />
+                                    </div>
+                                    <div class="col-xs-12 col-md-2">
+                                        <a class="k-button" id="vcMigrationURLLink" href="#" target="_blank" style="margin-top:22px" data-bind="attr: {href:currentRecord.vcMigrationURL}, visible: currentRecord.vcMigrationURL.length>0">Open</a>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row customBorderRadius" style="background:rgba(220, 105, 0, 0.18);margin:10px;padding:10px">
+                                    <div class="col-xs-12 col-md-5">
+                                        <div class="form-group" id="divDocumentTypeStatus">
+                                            <label for="intDocumentTypeStatusID" class="control-label">Status&nbsp;</label>
+                                            <div class="input-group">
+                                                <input type="text" disabled data-bind="value: currentRecordDocTypeStatus.vcName" class="form-control" />
+                                                <input type="hidden" id="intDocumentTypeStatusID" name="intDocumentTypeStatusID" data-bind="value: currentRecordDocTypeStatus.vcName" />
+                                                <div class="input-group-btn">
+                                                    <a class="k-button k-primary" id="intDocumentTypeStatusIDBtn" data-role="button" data-bind="click: evtOpenStatusDialog"><span class="fa fa-search"></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-2">
+                                        <div class="form-group">
+                                            <label class="control-label" for="bIsIncident">Incident </label>
+                                            <div id="bIsIncident" class="toggle toggle-light" style="width: 100px"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-md-5">
+                                        <div class="form-group">
+                                            <label for="intIncidentAssignedToID" class="control-label">Assigned To </label>
+                                            <input id="intIncidentAssignedToID"
+                                                   name="intIncidentAssignedToID"
+                                                   data-auto-bind="false"
+                                                   data-role="hydropdownlist"
+                                                   data-hy-entity-name="Person"
+                                                   data-hydefault-text-property="currentRecord.intIncidentAssignedTo_vcName"
+                                                   data-hydefault-value-property="currentRecord.intIncidentAssignedToID"
+                                                   data-bind="source:dsAssignedTo, value: currentRecord.intIncidentAssignedToID"
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row"></div>
+                                <div id="InvoiceIssuedFields">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-4">
+                                            <div class="form-group">
+                                                <label for="vcCustomer" class="control-label">Customer&nbsp;</label>
+                                                <input id="vcCustomer" name="vcCustomer" type="text" data-bind="value: currentRecord.vcCustomer" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-3">
+                                            <div class="form-group">
+                                                <label for="vcUser" class="control-label">User&nbsp;</label>
+                                                <input id="vcUser" name="vcUser" type="text" data-bind="value: currentRecord.vcUser" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-3">
+                                            <div class="form-group">
+                                                <label for="vcApprovalBy" class="control-label">Approval by&nbsp;</label>
+                                                <input id="vcApprovalBy" name="vcApprovalBy" type="text" data-bind="value: currentRecord.vcApprovalBy" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-2">
+                                            <div class="form-group">
+                                                <label for="dtInvoiceDate" class="control-label">Invoice date&nbsp;</label>
+                                                <input id="dtInvoiceDate" name="dtInvoiceDate" data-role="datepicker" placeholder="dd/MM/YYYY" data-format="dd/MM/yyyy" type="date" data-bind="value: currentRecord.dtInvoiceDate" class="form-control" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div id="InvoiceReceivedFields">
+                                    <div class="row customBorderRadius" style="background:rgba(220, 105, 0, 0.18);margin:10px;padding:10px">
+                                        <div class="col-xs-12 col-md-3">
+                                            <div class="form-group">
+                                                <label for="bIsResident" class="control-label">Resident </label>
+                                                <input id="bIsResident"
+                                                       name="bIsResident"
+                                                       data-role="hydropdownlist"
+                                                       data-auto-bind="false"
+                                                       data-hy-entity-name="Person"
+                                                       data-hydefault-text-property="vcResident"
+                                                       data-value-field="ID"
+                                                       data-text-field="vcName"
+                                                       data-bind="source:dsYesNO_Resident , value: vcResident"
+                                                       class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-3">
+                                            <div class="form-group">
+                                                <label for="vcCurrentCertificate" class="control-label">Current Certificate </label>
+                                                <input id="vcCurrentCertificate"
+                                                       name="vcCurrentCertificate"
+                                                       data-role="hydropdownlist"
+                                                       data-auto-bind="false"
+                                                       data-hy-entity-name="Person"
+                                                       data-hydefault-text-property="currentRecord.vcCurrentCertificate"
+                                                       data-value-field="ID"
+                                                       data-text-field="vcName"
+                                                       data-bind="source:dsYesNONotApplies , value: currentRecord.vcCurrentCertificate"
+                                                       class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-3">
+                                            <div class="form-group">
+                                                <label for="bNeedResidenceCertificate" class="control-label">Need Certificate of Residence </label>
+                                                <input id="bNeedResidenceCertificate"
+                                                       name="bNeedResidenceCertificate"
+                                                       data-role="hydropdownlist"
+                                                       data-auto-bind="false"
+                                                       data-hy-entity-name="Person"
+                                                       data-hydefault-text-property="currentRecord.bNeedResidenceCertificate"
+                                                       data-value-field="ID"
+                                                       data-text-field="vcName"
+                                                       data-bind="source:dsYesNO_NeedResidenceCertificate , value: vcNeedCertificateResidence"
+                                                       class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label" for="bTaxAnalysisCompleted">Tax analysis completed</label>
+                                                <div id="bTaxAnalysisCompleted" class="toggle toggle-light" style="width: 100px"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="vcFiscalComment" class="control-label">Fiscal comment&nbsp;</label>
+                                                <textarea id="vcFiscalComment" name="vcFiscalComment" type="text" data-bind="value: currentRecord.vcFiscalComment" class="form-control" row="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-2">
+                                        <div class="form-group">
+                                            <label for="dtInvoiceDate" class="control-label">Invoice date&nbsp;</label>
+                                            <input id="dtInvoiceDate" name="dtInvoiceDate" data-role="datepicker" placeholder="dd/MM/YYYY" data-format="dd/MM/yyyy" type="date" data-bind="value: currentRecord.dtInvoiceDate" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-2" id="removabledcPercentageWithTax">
+                                        <div class="form-group">
+                                            <label for="dcPercentageWithTax" class="control-label">%Withholding Tax&nbsp;</label>
+                                            <input id="dcPercentageWithTax" name="dcPercentageWithTax" type="text"
+                                                   data-bind="value: currentRecord.dcPercentageWithTax"
+                                                   class="form-control k-widget k-numerictextbox"
+                                                   data-role="numerictextbox"
+                                                   data-decimals="2"
+                                                   data-format="n"
+                                                   placeholder="0,00"
+                                                   data-spinners="false"
+                                                   data-max="100" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-2">
+                                        <div class="form-group">
+                                            <label for="dcAmount" class="control-label">Amount&nbsp;</label>
+                                            <input id="dcAmount" name="dcAmount" type="text"
+                                                   data-bind="value: currentRecord.dcAmount"
+                                                   class="form-control k-widget k-numerictextbox"
+                                                   data-role="numerictextbox"
+                                                   data-decimals="2"
+                                                   data-format="n"
+                                                   placeholder="0,00"
+                                                   data-spinners="false" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-2">
+                                        <div class="form-group">
+                                            <label for="vcPeriod" class="control-label">Period&nbsp;</label>
+                                            <input id="vcPeriod" name="vcPeriod" type="text" data-bind="value: currentRecord.vcPeriod" class="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-md-4">
+                                        <div class="form-group">
+                                            <label for="intPurchaseOrderID" class="control-label">Purchase Order&nbsp;</label>
+                                            <div id="purchaseAmountExceededTextMessage" class="purchaseAmountExceededText display-none">The amount exceeds the purchase order amount</div>
+                                            <input id="intPurchaseOrderID"
+                                                   name="intPurchaseOrderID"
+                                                   data-auto-bind="false"
+                                                   data-role="hydropdownlist"
+                                                   data-hy-entity-name="DocumentPurchaseOrder"
+                                                   data-hydefault-text-property="currentRecord.intPurchaseOrder_vcPurchaseOrderNumber"
+                                                   data-hydefault-value-property="currentRecord.intPurchaseOrderID"
+                                                   data-bind="source: dsPurchaseOrders, value: currentRecord.intPurchaseOrderID"
+                                                   data-option-label="Select P.O...."
+                                                   data-text-field="vcPurchaseOrderNumber"
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-xs-12 col-md-2" id="removabledcTaxBase">
+                                            <div class="form-group">
+                                                <label class="control-label" for="dcTaxBase">Tax base</label>
+                                                <input id="dcTaxBase" name="dcTaxBase" type="text"
+                                                       data-bind="value: currentRecord.dcTaxBase"
+                                                       class="form-control k-widget k-numerictextbox"
+                                                       data-role="numerictextbox"
+                                                       data-decimals="2"
+                                                       data-format="n"
+                                                       placeholder="0,00"
+                                                       data-spinners="false" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-2" id="removabledcVAT">
+                                            <div class="form-group">
+                                                <label class="control-label" for="dcVAT">% VAT </label>
+                                                <input id="dcVAT" name="dcVAT" type="text"
+                                                       data-bind="value: currentRecord.dcVAT"
+                                                       class="form-control k-widget k-numerictextbox"
+                                                       data-role="numerictextbox"
+                                                       data-decimals="2"
+                                                       data-format="n"
+                                                       placeholder="0,00"
+                                                       data-spinners="false" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-2" id="removabledcVatAmount">
+                                            <div class="form-group">
+                                                <label class="control-label" for="dcVatAmount">VAT Amount </label>
+                                                <input id="dcVatAmount" name="dcVatAmount" type="text"
+                                                       data-bind="value: currentRecord.dcVatAmount"
+                                                       class="form-control k-widget k-numerictextbox"
+                                                       data-role="numerictextbox"
+                                                       data-decimals="2"
+                                                       data-format="n"
+                                                       placeholder="0,00"
+                                                       data-spinners="false" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-2" data-bind="visible: useThirdPartyVatAccount">
+                                            <div class="form-group">
+                                                <label class="control-label" for="dcVatValue">VAT Amount</label>
+                                                <input id="dcVatValue" name="dcVatValue" type="text"
+                                                       data-bind="value: currentRecord.dcVatValue"
+                                                       class="form-control k-widget k-numerictextbox"
+                                                       data-role="numerictextbox"
+                                                       data-decimals="2"
+                                                       data-format="n"
+                                                       placeholder="0,00"
+                                                       data-spinners="false" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div id="TaxFields">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-3">
+                                            <div class="form-group">
+                                                <label for="intTaxTypeID" class="control-label">Tax Type&nbsp;</label>
+                                                <input id="intTaxTypeID"
+                                                       name="intTaxTypeID"
+                                                       data-auto-bind="false"
+                                                       data-role="hydropdownlist"
+                                                       data-hy-entity-name="TaxType"
+                                                       data-bind="source: dsTaxType, value: currentRecord.intTaxTypeID"
+                                                       data-option-label="Select Tax Type...."
+                                                       data-text-field="vcName"
+                                                       class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-3">
+                                            <div class="form-group">
+                                                <label for="vcPeriod" class="control-label">Period&nbsp;</label>
+                                                <input id="vcPeriod" name="vcPeriod" type="text" data-bind="value: currentRecord.vcPeriod" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="PayrollSSFields">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-3">
+                                            <div class="form-group">
+                                                <label for="vcPeriod" class="control-label">Period&nbsp;</label>
+                                                <input id="vcPeriod" name="vcPeriod" type="text" data-bind="value: currentRecord.vcPeriod" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div id="GESPAFields">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-3">
+                                            <div class="form-group">
+                                                <label for="vcPeriod" class="control-label">Period&nbsp;</label>
+                                                <input id="vcPeriod" name="vcPeriod" type="text" data-bind="value: currentRecord.vcPeriod" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="PurchaseOrderFields">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="vcTitle" class="control-label">Title&nbsp;</label>
+                                                <input id="vcTitle" name="vcTitle" type="text" data-bind="value: currentRecord.vcTitle" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="vcRequisitioner" class="control-label">Requisitioner&nbsp;</label>
+                                                <input id="vcRequisitioner" name="vcRequisitioner" type="text" data-bind="value: currentRecord.vcRequisitioner" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-3">
+                                            <div class="form-group">
+                                                <label for="intItemGroupID" class="control-label">Item group&nbsp;</label>
+                                                <input id="intItemGroupID"
+                                                       name="intItemGroupID"
+                                                       data-auto-bind="false"
+                                                       data-role="hydropdownlist"
+                                                       data-hy-entity-name="ItemGroup"
+                                                       data-hydefault-text-property="currentRecord.intItemGroup_vcName"
+                                                       data-bind="source: dsItemGroup, value: currentRecord.intItemGroupID"
+                                                       data-option-label="Select item group..."
+                                                       data-text-field="vcName"
+                                                       class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-1">
+                                            <div class="form-group">
+                                                <label for="vcReview" class="control-label">Review </label>
+                                                <input id="vcReview"
+                                                       name="vcReview"
+                                                       data-role="hydropdownlist"
+                                                       data-auto-bind="false"
+                                                       data-hy-entity-name="Person"
+                                                       data-hydefault-text-property="vcReview"
+                                                       data-value-field="ID"
+                                                       data-text-field="vcName"
+                                                       data-bind="source:dsYesNO_Review , value: vcReview"
+                                                       class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-5">
+                                            <div class="form-group">
+                                                <label for="vcFrameworkContractNo" class="control-label">Framework contract Nº&nbsp;</label>
+                                                <input id="vcFrameworkContractNo" name="vcFrameworkContractNo" type="text" data-bind="value: currentRecord.vcFrameworkContractNo" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-6">
+                                            <div class="form-group">
+                                                <label for="intPaymentTermID" class="control-label">Payment terms&nbsp;</label>
+                                                <input id="intPaymentTermID"
+                                                       name="intPaymentTermID"
+                                                       data-role="hydropdownlist"
+                                                       data-hy-entity-name="PaymentTerm"
+                                                       data-hydefault-text-property="currentRecord.intPaymentTerm_vcName"
+                                                       data-bind="value: currentRecord.intPaymentTermID"
+                                                       data-option-label="Select payment terms..."
+                                                       data-text-field="vcName"
+                                                       class="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-md-3">
+                                            <div class="form-group">
+                                                <label for="vcPurchaseOrderNumber" class="control-label">Purchase order number&nbsp;</label>
+                                                <input id="vcPurchaseOrderNumber" name="vcPurchaseOrderNumber" type="text" data-bind="value: currentRecord.vcPurchaseOrderNumber" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-2">
+                                            <div class="form-group">
+                                                <label for="dtPurchaseOrderDate" class="control-label">P.O date</label>
+                                                <input id="dtPurchaseOrderDate" name="dtPurchaseOrderDate" data-role="datepicker" placeholder="dd/MM/YYYY" type="date" data-bind="value: currentRecord.dtPurchaseOrderDate" class="form-control" data-format="dd/MM/yyyy" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-3">
+                                            <div class="form-group">
+                                                <label for="vcSRMTender" class="control-label">SRM Tender</label>
+                                                <input id="vcSRMTender" name="vcSRMTender" type="text" data-bind="value: currentRecord.vcSRMTender" class="form-control" data-format="dd/MM/yyyy" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col">
+                                            <div class="col-xs-12 col-md-3">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="bIsChargeableToBudget">Chargeable to budget </label>
+                                                    <div id="bIsChargeableToBudget" class="toggle toggle-light" style="width: 100px"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-3">
+                                            <div class="form-group">
+                                                <label for="dtValidFromDate" class="control-label">Valid from date</label>
+                                                <input id="dtValidFromDate" name="dtValidFromDate" data-role="datepicker" placeholder="dd/MM/YYYY" type="date" data-bind="value: currentRecord.dtValidFromDate" class="form-control" data-format="dd/MM/yyyy" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-3">
+                                            <div class="form-group">
+                                                <label for="dtValidityEndDate" class="control-label">Validity end date</label>
+                                                <input id="dtValidityEndDate" name="dtValidityEndDate" data-role="datepicker" placeholder="dd/MM/YYYY" type="date" data-bind="value: currentRecord.dtValidityEndDate" class="form-control" data-format="dd/MM/yyyy" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div id="StatutoryAccountFields">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="vcTitle" class="control-label">Title&nbsp;</label>
+                                                <input id="vcTitle" name="vcTitle" type="text" data-bind="value: currentRecord.vcTitle" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr />
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-3" id="removablevcReference">
+                                        <div class="form-group">
+                                            <label for="vcReference" class="control-label">Reference&nbsp;</label>
+                                            <input id="vcReference" name="vcReference" type="text" data-bind="value: currentRecord.vcReference" class="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-md-3" id="removabledcPaymentAmount">
+                                        <div class="form-group">
+                                            <label for="dcPaymentAmount" class="control-label">Payment Amount&nbsp;</label>
+                                            <input id="dcPaymentAmount" name="dcPaymentAmount" type="text"
+                                                   data-bind="value: currentRecord.dcPaymentAmount"
+                                                   class="form-control k-widget k-numerictextbox"
+                                                   data-role="numerictextbox"
+                                                   data-decimals="2"
+                                                   data-format="n"
+                                                   placeholder="0,00"
+                                                   data-spinners="false" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-2" id="removabledcAmount">
+                                        <div class="form-group">
+                                            <label for="dcAmount" class="control-label">Amount&nbsp;</label>
+                                            <div id="amount-warning" style="color: red;"></div>
+                                            <input id="dcAmount" name="dcAmount" type="number"
+                                                   data-bind="value: currentRecord.dcAmount"
+                                                   class="form-control k-widget k-numerictextbox"
+                                                   data-role="numerictextbox"
+                                                   data-decimals="2"
+                                                   data-format="n"
+                                                   placeholder="0,00"
+                                                   data-spinners="false" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-2">
+                                        <div class="form-group">
+                                            <label for="intCurrencyID" class="control-label">Currency&nbsp;</label>
+                                            <input id="intCurrencyID"
+                                                   name="intCurrencyID"
+                                                   data-role="hydropdownlist"
+                                                   data-hy-entity-name="Currency"
+                                                   data-hydefault-text-property="currentRecord.intCurrency_vcCode"
+                                                   data-bind="value: currentRecord.intCurrencyID"
+                                                   data-option-label="Select Currency..."
+                                                   data-text-field="vcCode"
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-2" id="removablebPaymentRelease">
+                                        <div class="form-group">
+                                            <!-- Liberado de pago -->
+                                            <label class="control-label" for="bPaymentRelease">Payment Release </label>
+                                            <div id="bPaymentRelease" class="toggle toggle-light" style="width: 100px"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-3" id="removabledtAccrualDate">
+                                        <div class="form-group">
+                                            <label for="dtAccrualDate" class="control-label">Accrual Date</label>
+                                            <input id="dtAccrualDate" name="dtAccrualDate" data-role="datepicker" placeholder="dd/MM/YYYY" type="date" data-bind="value: currentRecord.dtAccrualDate" class="form-control" data-format="dd/MM/yyyy" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-3" id="removabledtDueDate">
+                                        <div class="form-group">
+                                            <label for="dtDueDate" class="control-label">Due Date</label>
+                                            <input id="dtDueDate" name="dtDueDate" data-role="datepicker" placeholder="dd/MM/YYYY" type="date" data-bind="value: currentRecord.dtDueDate" class="form-control" data-format="dd/MM/yyyy" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-3" id="removabledtPaymentDate">
+                                        <div class="form-group">
+                                            <label for="dtPaymentDate" class="control-label">Payment Date</label>
+                                            <input id="dtPaymentDate" name="dtPaymentDate" data-role="datepicker" placeholder="dd/MM/YYYY" type="date" data-bind="value: currentRecord.dtPaymentDate" class="form-control" data-format="dd/MM/yyyy" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-3" id="removablevcAccountIDCode">
+                                        <div class="form-group">
+                                            <label for="vcAccountIDCode" class="control-label">Booking Local Account</label>
+                                            <input id="vcAccountIDCode" name="vcAccountIDCode" type="text" data-bind="value: currentRecord.vcAccountIDCode" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-4" id="removablevcIBAN">
+                                        <div class="form-group">
+                                            <label for="vcIBAN" class="control-label">IBAN</label>
+                                            <input id="intThirdPartyAccountID"
+                                                   name="intThirdPartyAccountID"
+                                                   data-auto-bind="false"
+                                                   data-role="hydropdownlist"
+                                                   data-hy-entity-name="ThirdPartyAccount"
+                                                   data-hydefault-text-property="currentRecord.intThirdPartyAccount_vcIBAN"
+                                                   data-bind="source: dsThirdPartyAccount, value: currentRecord.intThirdPartyAccountID, events: { close: evCloseComboThirdPartyAccount }"
+                                                   data-option-label="Select ThirdParty IBAN..."
+                                                   data-text-field="vcIBAN"
+                                                   data-value-field="ID"
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4" id="removablevcSWIFT">
+                                        <div class="form-group">
+                                            <label for="vcSWIFT" class="control-label">SWIFT</label>
+                                            <input readonly id="vcSWIFT" name="vcSWIFT" type="text" data-bind="value: currentRecord.intThirdPartyAccount_vcSWIFT" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-4" id="removableintPaymentMethod">
+                                        <div class="form-group">
+                                            <label for="intPaymentMethodID" class="control-label">Payment Method</label>
+                                            <input id="intPaymentMethodID"
+                                                   name="intPaymentMethodID"
+                                                   data-role="hydropdownlist"
+                                                   data-hy-entity-name="PaymentMethod"
+                                                   data-hydefault-text-property="currentRecord.intPaymentMethod_vcName"
+                                                   data-bind="source: dsPaymentMethod,value: currentRecord.intPaymentMethodID, events: { close: evCloseComboPaymentMethod }"
+                                                   data-option-label="Select Payment Method..."
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-4" data-bind="visible: useThirdPartyVatAccount">
+                                        <div class="form-group">
+                                            <label for="intThirdPartyVatAccountID" class="control-label">VAT BANK Account</label>
+                                            <input id="intThirdPartyVatAccountID"
+                                                   name="intThirdPartyVatAccountID"
+                                                   data-auto-bind="false"
+                                                   data-role="hydropdownlist"
+                                                   data-hydefault-text-property="currentRecord.intThirdPartyVatAccountID_vcIBAN"
+                                                   data-bind="source: dsThirdPartyVatAccount, value: currentRecord.intThirdPartyVatAccountID"
+                                                   data-option-label="Select ThirdParty VAT IBAN..."
+                                                   data-text-field="vcIBAN"
+                                                   data-value-field="ID"
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-3" data-bind="visible: useThirdPartyVatAccount">
+                                        <div class="form-group">
+                                            <label for="dtChangeVatPaymentToThirdPartyVatAccount" class="control-label">VAT Split system date</label>
+                                            <input id="dtChangeVatPaymentToThirdPartyVatAccount"
+                                                   name="dtChangeVatPaymentToThirdPartyVatAccount"
+                                                   data-role="datepicker"
+                                                   placeholder="dd/MM/YYYY"
+                                                   type="date"
+                                                   data-bind="value: currentRecord.dtChangeVatPaymentToThirdPartyVatAccount"
+                                                   class="form-control"
+                                                   data-format="dd/MM/yyyy"
+                                                   disabled />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-3" id="removablevcWindFarm">
+                                        <div class="form-group">
+                                            <label for="vcWindFarm" class="control-label">Wind Farm </label>
+                                            <input id="vcWindFarm" name="vcWindFarm" type="text" data-bind="value: currentRecord.vcWindFarm" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-3" id="removablevcItem">
+                                        <div class="form-group">
+                                            <label for="vcItem" class="control-label">Item&nbsp;</label>
+                                            <input id="vcItem" name="vcItem" type="text" data-bind="value: currentRecord.vcItem" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-3" id="removableintItemGroup">
+                                        <div class="form-group">
+                                            <label for="intItemGroupID" class="control-label">Item group&nbsp;</label>
+                                            <input id="intItemGroupID"
+                                                   name="intItemGroupID"
+                                                   data-auto-bind="false"
+                                                   data-role="hydropdownlist"
+                                                   data-hy-entity-name="ItemGroup"
+                                                   data-bind="value: currentRecord.intItemGroupID"
+                                                   data-option-label="Select a Item group...."
+                                                   data-text-field="vcName"
+                                                   class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-3" id="removablebIntrastat">
+                                        <div class="form-group">
+                                            <label class="control-label" for="bIntrastat">Intrastat&nbsp;</label>
+                                            <div id="bIntrastat" class="toggle toggle-light" style="width: 100px"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="vcRemarks" class="control-label">Remarks&nbsp;</label>
+                                        <textarea id="vcRemarks" name="vcRemarks" style="height:68px" data-bind="value: currentRecord.vcRemarks" class="form-control" rows="3"> </textarea>
+                                        <div style="position:absolute;margin-top:-108px;right:16px">
+                                            <label class="k-invalid-msg" data-for="vcRemarks"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col btn-group-sm">
+                                        <a class="k-button k-default" style="float:right" data-role="button" data-bind="click: evtDelete, enabled: bDeleteEnabled, visible:bDeleteVisible"><span class="fa fa-trash-o"></span> Delete</a>
+                                        <a class="k-button k-default" style="float:right" data-role="button" data-bind="click: exportToExcel, enabled: bExportEnabled "><span class="fa fa-file-excel-o"></span> Excel</a>
+                                        <a class="k-button k-primary" id="saveBtn" style="float:right" data-role="button" data-bind="click: evtSaveClick, enabled: currentRecord.bIsEditable "><span class="fa fa-floppy-o">&nbsp</span>Save</a>
+                                        <a class="k-button" data-role="button" style="float:right" data-bind="click: cancel"><span class="fa fa-reply"></span> Back</a>
+                                    </div>
+                                </div>
+
+                                <label class="control-label" style="font-size: 19px;font-style: italic;padding: 6px;">Transaction log</label>
+                                <div id="DocumentActionGrid"
+                                     data-role="grid"
+                                     data-bind="source: dsDocumentAction, events: { dataBound:removeDocumentActionGridColsFromOtherSubtypes}"
+                                     data-pageable="true"
+                                     data-sortable="true"
+                                     data-filterable="true"
+                                     data-resizable="true"
+                                     data-scrollable="true"
+                                     data-columns='[
+                                    { field: "dtActionDate", title: "Action date", format: "{0:dd/MM/yyyy HH:mm}", width: 121 },
+                                    { field: "intPerson_vcName", title: "User", width: 160 },
+                                    { field: "vcChangeOrUpdateReason", title: "Change or update reason", width: 250},
+                                    { field: "vcDocumentActionTeams", title: "Team", width: 160 },
+                                    { field: "vcDocumentTypeStatusDescription", title: "Status", width: 160 },
+                                    { field: "dcPaymentAmount", title: "Payment amount", format: "{0:N2}",width: 160, template:$("#tplPaymentAmountCell").html()  },
+                                    { field: "intCurrency_vcCode", title: "Currency", width: 140 },
+                                    { field: "intPaymentMethod_vcName", title: "Payment method", width: 250 },
+                                    { field: "dcAmount", title: "Amount", format: "{0:N2}", width: 150, template:$("#tplAmountCell").html()  },
+                                    { field: "dcPercentageWithTax", title: "%Withholding Tax", format: "{0:N2}", width: 70, template:$("#tplPercentageWithTaxCell").html()  },
+                                    { field: "intThirdPartyAccount_vcIBAN", title: "IBAN", width: 200 },
+                                    { field: "intThirdPartyVatAccount_vcIBAN", title: "VAT BANK Account", width: "170px" },
+                                    { field: "dtChangeVatPaymentToThirdPartyVatAccount", title: "VAT Split system date", format: "{0:dd/MM/yyyy}", width: "170px" },
+                                    { field: "intThirdParty_vcCode", title: "Third party code", width: 140 },
+                                    { field: "dtAccrualDate", title: "Accrual date", format: "{0:dd/MM/yyyy}", width: 121 },
+                                    { field: "bPaymentRelease", title: "Payment release", template: $("#tplbPaymentRelease").html(), width: 161, filterable: false },
+                                    { field: "vcFiscalComment", title: "Fiscal comment", width: 250},
+                                    { field: "vcRemarks", title: "Remarks", width: 250,template:$("#tmpRemarks").html()}
+                             ]'></div>
+                            </form>
+                        </div>
+                        <div class="col-xs-3">
+                            <br />
+                            <br />
+                            <div style="min-height:326px;max-height:626px;overflow-x: hidden;overflow-y:auto">
+                                <div>
+                                    <a class="k-button" data-role="button" data-bind="click: showAttachmentDialog, enabled: getIsAttatchmentEnabled" style="float:right"><span class="fa fa-cloud-upload"></span> Add</a>
+                                    <label class="control-label" style="font-size: 19px;font-style: italic;padding: 6px;">Attachment</label>
+                                </div>
+                                <div id="divAttachment"
+                                     style="box-sizing: inherit"
+                                     data-role="listview"
+                                     data-bind="source: dsDocumentAttachment"
+                                     data-auto-bind="true"
+                                     data-pageable="true"
+                                     data-sortable="false"
+                                     data-template="uploadTemplate"
+                                     data-scrollable="true">
+                                </div>
+                            </div>
+                            <br />
+                            <div style="min-height:340px;max-height:680px;overflow-x: hidden;overflow-y:auto">
+                                <div>
+                                    <a class="k-button" data-role="button" data-bind="click: showChatDialog, enabled:getIsChatEnabled" style="float:right"><span class="fa fa-pencil-square-o"></span> Add</a>
+                                    <label class="control-label" style="font-size: 19px;font-style: italic;padding: 6px;">Chat</label>
+                                </div>
+                                <div id="divChat"
+                                     style="box-sizing: inherit"
+                                     data-role="listview"
+                                     data-bind="source: dsTalk"
+                                     data-auto-bind="true"
+                                     data-pageable="true"
+                                     data-sortable="false"
+                                     data-template="chatTemplate"
+                                     data-scrollable="true">
+                                </div>
+                            </div>
+                            <br />
+                            <div style="min-height:340px;max-height:680px;overflow-x: hidden;overflow-y:auto" data-bind="visible:showNotifications">
+                                <div>
+                                    <a class="k-button" data-role="button" data-bind="click: showNotificationDialog, visible:allowAddNotification, enabled:getIsNotificationEnabled" style="float:right"><span class="fa fa-send-o"></span> Add</a>
+                                    <label class="control-label" style="font-size: 19px;font-style: italic;padding: 6px;">Notification</label>
+                                </div>
+                                <div id="divNotification"
+                                     style="box-sizing: inherit"
+                                     data-role="listview"
+                                     data-bind="source: dsNotification"
+                                     data-auto-bind="true"
+                                     data-pageable="true"
+                                     data-sortable="false"
+                                     data-template="notificationTemplate"
+                                     data-scrollable="true">
+                                </div>
+                                <form role="form" id="formRequestNotification">
+                                    <div data-bind="visible:allowSelectOriginNotification" class="form-group">
+                                        <label for="originNotificationID" class="control-label">Origin notification</label>
+                                        <input id="originNotificationID"
+                                               name="originNotificationID"
+                                               data-role="hydropdownlist"
+                                               data-hy-entity-name="PaymentMethod"
+                                               data-bind="source: dsOriginNotification,value: originNotificationID"
+                                               data-option-label="Select origin notification..."
+                                               class="form-control" />
+                                    </div>
+                                </form>
+                                <div data-bind="visible: originNotification" class="form-group">
+                                    <div class="hy-auth-item-color2" style="margin-bottom:15px">
+                                        <div class="row col" style="max-height:122px">
+                                            <div style="color:gray;font-size:11px;float:left" data-bind="text: originNotification.vcName">
+                                            </div>
+                                            <div class="notification-option" onclick="Request.setOriginNotificationID(null)">
+                                                <span class="fa fa-times fa-lg"></span>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row col">
+                                            <div style="float:left" data-bind="html: originNotification.description"></div>
+                                            <div style="float:right">
+                                                <span data-bind="visible: originNotification.vcStateCode === 'Closed',text: originNotification.vcState" class="label label-success"></span>
+                                                <span data-bind="visible: originNotification.vcStateCode === 'Expired',text: originNotification.vcState" class="label label-danger"></span>
+                                                <span data-bind="visible: originNotification.vcStateCode === 'ExpireSoon',text: originNotification.vcState" class="label label-warning"></span>
+                                                <span data-bind="visible: originNotification.vcStateCode === 'Pending',text: originNotification.vcState" class="label label-info"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row col">
+                                            <div style="font-weight:bold;font-size:12px;float:left" data-bind="text: originNotification.due">
+                                            </div>
+                                            <div style="font-weight:bold;font-size:12px;float:right" data-bind="text: originNotification.notification">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" data-bind="visible:allowSelectOriginNotification">
+                                    <a class="k-button hy-notificacion-button" data-role="button" data-bind="click: showSelectOriginNotification"><span class="fa fa-link"></span> Select origin notification</a>
+                                </div>
+                                <div class="form-group" data-bind="visible:allowAddOriginNotification">
+                                    <a class="k-button hy-notificacion-button" data-role="button" data-bind="click: showAddOriginNotification"><span class="fa fa-link"></span> Add origin notification</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<script type="text/x-kendo-template" id="uploadTemplate">
+    #var typecolor=1;#
+    #var itemcolorclass = "hy-auth-item-color" + typecolor;#
+    <div class="#:itemcolorclass#" style="margin-top:5px">
+        <div class="row">
+            <div class="col">
+                <div style="font-weight:bold;">
+                    <div style="font-weight:normal;color:gray;font-size:11px">
+                        Created by #:intPerson_vcName# on team: #:intTeam_vcName != undefined ? intTeam_vcName : '[No team]'#  at #: Request.requestParseDateTimeOnTemplate(dtCreateDate)#
+                    </div>
+                    <br />
+                    <div style="font-weight:normal;font-size:11px">Attachment type: <span style="font-weight:bold">#:intAttachmentType_vcName# </span></div>
+                    <br />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div style="font-weight:bold;font-size:14px">
+                    #:vcName#
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col">
+                <div class="btn-group-xs">
+                    #if ((typeof vcFiles) != undefined && vcFiles != '' && vcFiles!=null) {#
+                    #var oFiles = JSON.parse(vcFiles)#
+                    #if (oFiles && oFiles.length>0) {#
+                    <div style="color:orange">
+                        #for (var i = 0; i < oFiles.length; i++) {#
+                        <div>
+                            <span style="float:left;padding-right:2px;margin-top:1px;color:#:oFiles[i].vcClassColour#" class="#:oFiles[i].vcClassIcon# fa-lg"></span>.
+                            <a class="k-link" onclick="Request.docsUpload.downloadAttachmentFile(#:oFiles[i].intAttachmentBridgeID#,true)"> #:oFiles[i].vcFileName# </a>
+                            #if (hasDataRightDeleted("Attachment")) {#
+                            <a class="k-link" onclick="Request.docsUpload.removeAttachmentFile(#:oFiles[i].intAttachmentBridgeID#)">[<span class="fa fa-remove"></span>]</a>
+                            #}#
+                        </div>
+                        <br />
+                        #}#
+                    </div>
+                    #}#
+                    #}#
+                </div>
+            </div>
+        </div>
+
+        <!--<div>&nbsp;&nbsp;#:vcName.toUpperCase()#</div>-->
+        <div class="row">
+            <div class="col">
+                #:vcDescription#
+            </div>
+
+        </div>
+    </div>
+</script>
+<script type="text/x-kendo-template" id="chatTemplate">
+    #var typecolor=1;#
+    #var itemcolorclass = "hy-auth-item-color" + typecolor;#
+    <div class="#:itemcolorclass#" style="margin-top:5px">
+        <div class="row">
+            <div class="col" style="max-height:122px">
+                <div>
+                    <div style="color:gray;font-size:11px;float:left">
+                        Created by #:intPerson_vcName# at  #: Request.requestParseDateTimeOnTemplate(dtCreateDate)#
+                    </div>
+                    <div style="font-weight:bold;font-size:12px;float:right">
+                        #:intPerson_vcName#
+                    </div>
+                    <!--<div style="font-weight:normal;color:gray;font-size:11px">Created by (user name creator) at 05/06/2017 10:19</div>-->
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col">
+                #=hyMoreInfo.getSplitTextWithHtmlEncode('chatSeparator',ID,vcName,350)#
+            </div>
+
+        </div>
+    </div>
+</script>
+<script type="text/x-kendo-template" id="notificationTemplate">
+    <div class="hy-auth-item-color1" style="margin-top:5px" data-bind="css: { hy-auth-item-color2: bDocumentOrigin }">
+        <div class="row col" style="max-height:122px">
+            <div style="color:gray;font-size:11px;float:left">
+                #:vcName#
+            </div>
+            #if ( bIsSubmited == false){#
+            #if (userBean.canHandleNotification == true){#
+            <div class="notification-option" onclick="Request.editNotification(#:ID#)">
+                <span class="fa fa-pencil-square-o fa-lg"></span>
+            </div>
+            #}#
+
+            <div class="col notification-option" onclick="Request.showSubmitDialog(#:ID#)">
+                <span class="fa fa-send-o fa-lg "></span>
+            </div>
+            #}#
+        </div>
+        <br />
+        <div class="row col">
+            <div style="float:left">#=hyMoreInfo.getSplitTextWithHtmlEncode('chatSeparator',ID,vcDescription,350)#</div>
+            <div style="float:right">
+                <span data-bind="visible: vcStateCode === 'Closed'" class="label label-success">#:vcState#</span>
+                <span data-bind="visible: vcStateCode === 'Expired'" class="label label-danger">#:vcState#</span>
+                <span data-bind="visible: vcStateCode === 'ExpireSoon'" class="label label-warning">#:vcState#</span>
+                <span data-bind="visible: vcStateCode === 'Pending'" class="label label-info">#:vcState#</span>
+
+            </div>
+        </div>
+        <div class="row col">
+            <div style="font-weight:bold;font-size:12px;float:left">
+                Due Date: #: kendo.toString(dtDue,"dd/MM/yyyy")#
+            </div>
+
+            #if ( bIsSubmited == false){#
+            <div style="font-weight:bold;font-size:12px;float:right">
+                Notification date: #: kendo.toString( dtNotification,"dd/MM/yyyy")#
+            </div>
+            #}#
+            #if ( bIsSubmited == true){#
+            <div style="font-weight:bold;font-size:12px;float:right">
+                Submited: #: kendo.toString( dtSubmition,"dd/MM/yyyy")#
+            </div>
+            #}#
+        </div>
+    </div>
+</script>
+<script id="tmpRemarks" type="text/x-kendo-template">
+    #if(vcRemarks && vcRemarks.length > 25){#
+    <div>
+        <div style="max-height:1.5em;overflow: hidden;white-space:pre-wrap">#:vcRemarks#</div>
+        <div style="width:100%;display:inline-block;z-index:1000; text-align:right">
+            <span>...</span>
+            <a data-bind="events:{click:showRemarks}"><span style="color:rgba(220,105,0,1); cursor: pointer; font-weight:bold">Read more</span>  </a>
+        </div>
+    </div>
+    #}else if(vcRemarks){#
+    <div>
+        #:vcRemarks#
+    </div>
+    #}#
+</script>
+<script src="././Scripts/app/views/RequestSubType.js"></script>
